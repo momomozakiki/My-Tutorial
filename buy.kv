@@ -1,0 +1,259 @@
+<FlatButton@Button>
+
+
+
+<BuyScreen>
+    id: buy_screen
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: (.4,.4,.4,.8)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        id: top_bar
+        size_hint_y: None
+        height: dp(40)
+        canvas.before:
+            Color:
+                rgba: (.45, .45, .45, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        GridLayout:
+            padding: dp(2)
+            spacing: dp(1)
+            cols: 4
+            Spinner:
+                size_hint_x: .2
+                #border: (16,16,16,16)
+                text: 'Option'
+                values: 'Option', 'Quit', 'Main'
+                canvas.before:
+
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [40]
+
+            Spinner:
+                id: agent_selected
+                size_hint_x: .2
+                text: 'AG9800'
+                values: 'AG9800', 'AG9801', 'AG9802'
+            Button:
+                size_hint_x: .2
+                text: 'Share'
+                #background_normal: ''       # To make the button background transparent
+                #background_color: [1,1,1,0] # Set the background color to blue
+                #canvas.before:
+                #    Color:
+                #        rgba: rgba('#0e1574ff')
+                #    RoundedRectangle:
+                #        pos: self.pos
+                #        size: self.size
+                #        radius: [10]
+            Label:
+                size_hint_x: .4
+                text: 'MYR 0.00'
+
+    BoxLayout:
+        id: date_bar
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: dp(35)
+        padding: dp(2)
+        Label:
+            id: date_display
+            text: 'D#'
+            #halign: 'right'
+            valign: 'middle'    # Make sure the text is on middle
+            text_size: self.size
+            size_hint_x: .8
+            background_color: (1, 0, 0, 1)
+            canvas.after:
+                Color:
+                    rgba:  (1, 0, 0, 1)
+        Button:
+            id: select_date
+            text: 'Date'
+            size_hint_x: .2
+
+
+    BoxLayout:
+        id: display_screen
+        padding: dp(2)
+        orientation: 'vertical'
+        size_hint_y: .6
+        #height: dp(320)
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+    BoxLayout:
+        id: key_pad
+        orientation: 'vertical'
+        size_hint_y: .4
+        #height: dp(48)
+        canvas.before:
+            Color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(35)
+            GridLayout:
+                padding: dp(2)
+                spacing: dp(5)
+                cols: 6
+
+                TextInput:
+                    id: number
+                    #on_focus: root._on_focus
+                    on_double_tap: root.on_double_tab('number')
+                    on_text_validate: game_type_1.focus = True
+                    #on_touch_down: True
+                    #pos_hint: 'center_y'    #not support by all layouts
+                    size_hint_x: .25
+                    hint_text: "Number"
+                    hint_text_color: (0,0,1,1)  # Set the color to blue
+                    multiline: False
+                    input_filter: 'int'         # None, 'int', 'float
+                    #valign: 'middle'
+                TextInput:
+                    id: game_type_1
+                    #on_focus: root.textbox_on_focus('game_type_1')
+                    on_text_validate: game_type_2.focus = True
+                    size_hint_x: .15
+                    hint_text: "Big"
+                    hint_text_color: (1,0,0,1)
+                    multiline: False
+                    input_filter: 'float'         # None, 'int', 'float
+                TextInput:
+                    id: game_type_2
+                    #on_focus: root.textbox_on_focus('game_type_2')
+                    on_text_validate: game_type_3.focus = True
+                    size_hint_x: .15
+                    hint_text: "Small"
+                    hint_text_color: (1,0,0,1)
+                    multiline: False
+                    input_filter: 'float'         # None, 'int', 'float
+                TextInput:
+                    id: game_type_3
+                    #on_focus: root.textbox_on_focus('game_type_3')
+                    on_text_validate: game_type_4.focus = True
+                    on_touch_up:
+                    size_hint_x: .15
+                    hint_text: "4A"
+                    hint_text_color: (1,0,0,1)
+                    multiline: False
+                    input_filter: 'float'         # None, 'int', 'float
+                TextInput:
+                    id: game_type_4
+                    #on_focus: root.textbox_on_focus('game_type_4')
+                    on_text_validate: game_type_5.focus = True
+                    size_hint_x: .15
+                    hint_text: "3A"
+                    hint_text_color: (1,0,0,1)
+                    multiline: False
+                    input_filter: 'float'         # None, 'int', 'float
+                TextInput:
+                    id: game_type_5
+                    #on_focus: root.textbox_on_focus('game_type_5')
+                    size_hint_x: .15
+                    hint_text: "3ABC"
+                    hint_text_color: (1,0,0,1)
+                    multiline: False
+                    input_filter: 'float'         # None, 'int', 'float
+
+        BoxLayout:
+            size_hint_y: .8
+
+            GridLayout:
+                size_hint_x: .6
+                padding: dp(2)
+                spacing: dp(2)
+                rows: 4
+                Button:
+                    id: btn_7
+                    text: '7'
+                Button:
+                    id: btn_8
+                    text: '8'
+                Button:
+                    id: btn_9
+                    text: '9'
+                Button:
+                    id: btn_4
+                    text: '4'
+                Button:
+                    id: btn_5
+                    text: '5'
+                Button:
+                    id: btn_6
+                    text: '6'
+                Button:
+                    id: btn_1
+                    text: '1'
+                Button:
+                    id: btn_2
+                    text: '2'
+                Button:
+                    id: btn_3
+                    text: '3'
+                Button:
+                    id: btn_dot
+                    text: '*'
+                Button:
+                    id: btn_0
+                    text: '0'
+                Button:
+                    id: btn_hash
+                    text: '#'
+
+            GridLayout:
+                size_hint_x: .4
+                padding: dp(2)
+                spacing: dp(2)
+                cols: 2
+                rows: 4
+                Button:
+                    id: Pre_pkg
+                    text: 'Pre Pkg'
+                    on_release: root.previous_package()
+                Button:
+                    id: Nx_pkg
+                    text: 'Nx Pkg'
+                    on_release: root.next_package()
+                Button:
+                    id: DEL
+                    text: 'DEL'
+                    on_release: root.delete_inp()
+                Button:
+                    id: CLR
+                    text: 'CLR'
+                    on_release: root.clear_input()
+                Button:
+                    id: later
+                    text:  u'\u2090'    # Testing with unicode character
+                    font_size: 30
+                Button:
+                    id: SENT
+                    text: 'SENT'
+                Button:
+                    id: NX_Line
+                    text: '<-'
+                    #on_release: root.next_line()
+                Button:
+                    id: Bet
+                    text: 'Bet'
+
